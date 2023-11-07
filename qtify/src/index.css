@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: "Poppins";
+  margin: 0;
 }
 
 :root {
@@ -13,6 +14,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--css-black);
 }
 
 code {

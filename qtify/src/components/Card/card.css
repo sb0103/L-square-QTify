@@ -1,0 +1,37 @@
+.card {
+  width: 159px;
+  height: 205px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--css-white);
+}
+
+.card-stats-btn {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 71px;
+  height: 23px;
+  background-color: var(--css-black);
+  color: var(--css-white);
+  margin: 2px 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img {
+  width: 159px;
+  height: 170px;
+}
+
+.card-title {
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--css-white);
+}
