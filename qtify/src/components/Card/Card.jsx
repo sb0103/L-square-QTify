@@ -1,13 +1,15 @@
 import "./card.css";
 
-export default function Card() {
+export default function Card({ imgSrc, stats, label }) {
   return (
-    <>
+    <div>
       <div className="card">
-        <img className="card-img" src="cardImg.png" alt="" />
-        <div className="card-stats-btn">100 follow</div>
+        <img className="card-img" src={imgSrc} alt="" />
+        <div className="card-rect">
+          <div className="card-stats-btn">{stats}</div>
+        </div>
       </div>
-      <div className="card-title">New English Songs</div>
-    </>
+      <div className="card-title">{label}</div>
+    </div>
   );
 }

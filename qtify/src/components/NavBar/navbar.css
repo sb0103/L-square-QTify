@@ -10,8 +10,9 @@
 }
 
 .feedback-btn {
-  font-size: 1.1rem;
-  width: 156px;
+  font-size: 13px;
+  font-weight: 700;
+  width: 170px;
   height: 48px;
   background-color: var(--css-black);
   color: var(--css-primary);
