@@ -1,0 +1,32 @@
+.carousel-container {
+  position: relative;
+  padding: 30px;
+}
+
+.carousel {
+  overflow-x: scroll;
+  scrollbar-width: 0px;
+  display: flex;
+  flex-direction: row;
+  gap: max(calc((100% - (7 * 159px)) / 6), 20px);
+  padding: 8px;
+}
+
+.carousel-container ::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-btn-left,
+.carousel-btn-right {
+  position: absolute;
+}
+
+.carousel-btn-left {
+  left: 0;
+  top: calc(50% - 16px);
+}
+
+.carousel-btn-right {
+  right: 0;
+  top: calc(50% - 16px);
+}

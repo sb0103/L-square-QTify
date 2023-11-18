@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: max(calc((100% - (7 * 159px)) / 7), 20px);
+  gap: max(calc((100% - (7 * 159px)) / 6), 20px);
   row-gap: 20px;
   padding: 8px;
 }

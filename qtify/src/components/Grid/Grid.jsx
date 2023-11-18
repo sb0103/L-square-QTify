@@ -2,12 +2,19 @@ import React from "react";
 import Card from "../Card/Card";
 import "./grid.css";
 
-function Grid({ title, cards }) {
+function Grid({ title, cards, toggleView }) {
   return (
     <div className="grid-cointainer">
       <div className="title-bar">
         <span className="title">{title}</span>
-        <span className="show-all-btn">Show all</span>
+        <span
+          className="show-all-btn"
+          onClick={() => {
+            toggleView();
+          }}
+        >
+          Show Less
+        </span>
       </div>
       <div className="grid">
         {cards.map((card) => {

@@ -1,5 +1,5 @@
 import "./navbar.css";
-import { IconSearch } from "../Icons";
+import { IconSearch } from "../Icons/Icons";
 
 export default function NavBar() {
   return (
