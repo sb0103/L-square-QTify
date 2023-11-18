@@ -5,17 +5,19 @@ import Albums from "./components/Albums/Albums.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const backendURL = `https://qtify-backend-labs.crio.do`;
+
 function App() {
   let [albums, setAlbums] = useState([[], []]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        let response1 = await axios.get(
-          `https://qtify-backend-labs.crio.do/albums/top`
-        );
+        let response1 = await axios.get(`${backendURL}/albums/top`);
 
-        setAlbums([response1.data]);
+        let response2 = await axios.get(`${backendURL}/albums/new`);
+
+        setAlbums([response1.data, response2.data]);
       } catch (err) {
         console.log(err);
       }
@@ -30,6 +32,17 @@ function App() {
       <Albums
         title={"Top Albums"}
         cards={albums[0].map((album) => {
+          return {
+            label: album.title,
+            imgSrc: album.image,
+            stats: `${album.follows} Follows`,
+            id: album.id,
+          };
+        })}
+      />
+      <Albums
+        title={"New Albums"}
+        cards={albums[1].map((album) => {
           return {
             label: album.title,
             imgSrc: album.image,
