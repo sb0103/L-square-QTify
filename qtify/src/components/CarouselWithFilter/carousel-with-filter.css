@@ -1,0 +1,17 @@
+.filter-bar {
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.filter-category {
+  padding: 4px;
+  color: var(--css-white);
+  font-size: 16px;
+  width: 68px;
+  text-align: center;
+}
+
+.selected-filter {
+  border-bottom: 3px solid var(--css-primary);
+}
