@@ -113,7 +113,7 @@ export default function CarouselWithFilter({ title, allCards }) {
           className="carousel-btn-left"
           onClick={() => {
             carousel.current.scrollTo({
-              left: pages.current - 2 * (159 * 7 + 20 * 6),
+              left: (pages.current - 2) * (159 * 7 + 20 * 6),
               behavior: "smooth",
             });
             setPages((p) => {

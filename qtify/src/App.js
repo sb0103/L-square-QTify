@@ -5,6 +5,7 @@ import CarouselWithFilter from "./components/CarouselWithFilter/CarouselWithFilt
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import FAQ from "./components/FAQ/FAQ.jsx";
 
 export const backendURL = `https://qtify-backend-labs.crio.do`;
 
@@ -67,6 +68,7 @@ function App() {
           };
         })}
       />
+      <FAQ />
     </div>
   );
 }
