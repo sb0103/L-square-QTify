@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import "./grid.css";
+import ToolTip from "../ToolTip/ToolTip";
 
 function Grid({ title, cards, toggleView }) {
   return (
@@ -19,12 +20,13 @@ function Grid({ title, cards, toggleView }) {
       <div className="grid">
         {cards.map((card) => {
           return (
-            <Card
-              key={card.id}
-              stats={card.stats}
-              imgSrc={card.imgSrc}
-              label={card.label}
-            />
+            <ToolTip text={`${card.songsCount} songs`} key={card.id}>
+              <Card
+                stats={card.stats}
+                imgSrc={card.imgSrc}
+                label={card.label}
+              />
+            </ToolTip>
           );
         })}
       </div>

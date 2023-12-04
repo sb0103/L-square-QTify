@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import Card from "../Card/Card";
 import { IconCarouselLeft, IconCarouselRight } from "../Icons/Icons";
+import ToolTip from "../ToolTip/ToolTip";
 
 import "./carousel.css";
 
@@ -31,12 +32,13 @@ export default function Carousel({ title, cards, toggleView }) {
           {" "}
           {cards.map((card) => {
             return (
-              <Card
-                key={card.id}
-                imgSrc={card.imgSrc}
-                stats={card.stats}
-                label={card.label}
-              />
+              <ToolTip text={`${card.songsCount} songs`} key={card.id} center>
+                <Card
+                  imgSrc={card.imgSrc}
+                  stats={card.stats}
+                  label={card.label}
+                />
+              </ToolTip>
             );
           })}
         </div>

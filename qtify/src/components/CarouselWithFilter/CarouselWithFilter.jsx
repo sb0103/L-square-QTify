@@ -1,60 +1,26 @@
 import { useRef, useState, useEffect } from "react";
 import Card from "../Card/Card";
 import { IconCarouselLeft, IconCarouselRight } from "../Icons/Icons";
-import { backendURL } from "../../App";
-
 import "./carousel-with-filter.css";
-import axios from "axios";
 
-export default function CarouselWithFilter({ title, allCards }) {
+export default function CarouselWithFilter({
+  title,
+  allCards,
+  filters,
+  filterFn,
+}) {
   const carousel = useRef(null);
   const [pages, setPages] = useState({ current: 1, max: 1 });
   const [cards, setCards] = useState([]);
-  const [genres, setGenres] = useState({ all: [], selected: "all" });
-
-  async function getAllFilterKey() {
-    try {
-      let response = await axios.get(`${backendURL}/genres`);
-      setGenres({ all: response.data.data, selected: "all" });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  function filterSongs(genre) {
-    setGenres((val) => {
-      return {
-        ...val,
-        selected: genre,
-      };
-    });
-
-    setCards(() => {
-      if (genre === "all") {
-        return allCards;
-      }
-
-      return allCards.filter((card) => {
-        if (card.genre.key === genre) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    });
-  }
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
   function isSelected(genre) {
-    if (genre === genres.selected) {
+    if (genre === selectedFilter) {
       return `selected-filter`;
     } else {
       return "";
     }
   }
-
-  useEffect(() => {
-    getAllFilterKey();
-  }, []);
 
   useEffect(() => {
     setCards(allCards);
@@ -72,25 +38,17 @@ export default function CarouselWithFilter({ title, allCards }) {
           <span className="title">{title}</span>
         </div>
         <div className="filter-bar">
-          <div
-            key={"all"}
-            className={`filter-category ${isSelected("all")}`}
-            onClick={() => {
-              filterSongs("all");
-            }}
-          >
-            All
-          </div>
-          {genres.all.map((genre) => {
+          {filters.map((filter) => {
             return (
               <div
-                key={genre.key}
-                className={`filter-category ${isSelected(genre.key)}`}
+                key={filter.key}
+                className={`filter-category ${isSelected(filter.key)}`}
                 onClick={() => {
-                  filterSongs(genre.key);
+                  filterFn(filter.key);
+                  setSelectedFilter(filter.key);
                 }}
               >
-                {genre.label}
+                {filter.label}
               </div>
             );
           })}

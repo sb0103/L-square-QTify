@@ -12,14 +12,18 @@ export const backendURL = `https://qtify-backend-labs.crio.do`;
 function App() {
   let [albums, setAlbums] = useState([[], []]);
   let [songs, setSongs] = useState([]);
+  let [genres, setGenres] = useState([]);
+  let [filteredSongs, setFilteredSongs] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         let response1 = await axios.get(`${backendURL}/albums/top`);
         let response2 = await axios.get(`${backendURL}/albums/new`);
+        let response3 = await axios.get(`${backendURL}/genres`);
 
         setAlbums([response1.data, response2.data]);
+        setGenres([{ key: "all", label: "All" }, ...response3.data.data]);
 
         let songsRes = await axios.get(`${backendURL}/songs`);
         setSongs(songsRes.data);
@@ -30,6 +34,10 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setFilteredSongs(songs);
+  }, [songs]);
+
   return (
     <div className="App">
       <NavBar />
@@ -38,6 +46,7 @@ function App() {
         title={"Top Albums"}
         cards={albums[0].map((album) => {
           return {
+            songsCount: album.songs.length,
             label: album.title,
             imgSrc: album.image,
             stats: `${album.follows} Follows`,
@@ -49,6 +58,7 @@ function App() {
         title={"New Albums"}
         cards={albums[1].map((album) => {
           return {
+            songsCount: album.songs.length,
             label: album.title,
             imgSrc: album.image,
             stats: `${album.follows} Follows`,
@@ -58,7 +68,7 @@ function App() {
       />
       <CarouselWithFilter
         title={"Songs"}
-        allCards={songs.map((song) => {
+        allCards={filteredSongs.map((song) => {
           return {
             label: song.title,
             imgSrc: song.image,
@@ -67,6 +77,16 @@ function App() {
             genre: song.genre,
           };
         })}
+        filters={genres}
+        filterFn={(genre) => {
+          if (genre === "all") {
+            setFilteredSongs(songs);
+            return;
+          }
+          let fs = songs.filter((val) => val.genre.key === genre);
+          console.log(fs.length);
+          setFilteredSongs(fs);
+        }}
       />
       <FAQ />
     </div>

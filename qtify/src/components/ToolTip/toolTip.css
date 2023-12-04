@@ -1,0 +1,28 @@
+.tool-tip {
+  font-size: 0.7rem;
+  display: none;
+  position: absolute;
+  top: -50px;
+  left: 38px;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  transition: all 0.25s ease-in-out;
+  opacity: 0;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.tool-tip-parent {
+  position: relative;
+}
+
+.show-tool-tip {
+  display: inline-block;
+  opacity: 0.9;
+}
+
+.tool-tip-center {
+  left: 50px;
+  top: 80px;
+}
